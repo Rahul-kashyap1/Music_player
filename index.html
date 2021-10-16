@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music_player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="main_div">
+        <div class="container">
+            <h2 id="title">LOTUS LANE</h2>
+            <h3 id="artist">THE LOYALIST</h3>
+            <div class="img_container">
+                <img src="img/music_1.jpg" alt="">
+            </div>
+            <audio src="songs/song_1.mp3"></audio>
+            <div class="music_controls">
+                <i class="fas fa-backward" title="previous" id="previous"></i>
+                <i class="fas fa-play" title="play" id="play"></i>
+                <i class="fas fa-forward" title="next" id="next"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        const music = document.querySelector('audio');
+        const img = document.querySelector('img');
+        const play = document.getElementById('play');
+        const title = document.getElementById('title');
+        const artist = document.getElementById('artist');
+        const next = document.getElementById('next');
+        const previous = document.getElementById('previous');
+        const songs = [{
+            name: "song_1",
+            title: "Lotus lane",
+            artist: "Loyalist",
+        },
+        {
+            name: "song_2",
+            title: "sappheiros",
+            artist: "Aurora",
+        },
+        {
+            name: "song_3",
+            title: "Waking-firiri",
+            artist: "Forkhali Tamka",
+        },
+        {
+            name: "Bandook--Original--Karan-Aujla",
+            title: "Bandook",
+            artist: "karan-Aujla",
+        },
+        {
+            name: "Begum-Original-Mankirt-Aulakh",
+            title: "Begum",
+            artist: "Mankrit-Aulakh",
+        },
+        {
+            name: "Bhangra-Paa-Le---Jhankar-Mandy-Gill-Sudesh-Bhosle-Mohammed-Aziz-Sadhana-Sargam",
+            title: "Bhangra-Paa-Le",
+            artist: "Jhankar-Mandy-Gill",
+        },
+        {
+            name: "Kala-Joda---Jhankar-Romy-Shalmali-Kholgade-Rap-By-Raftaar-Manisha",
+            title: "Kala-Joda",
+            artist: "Raftar",
+        },
+        {
+            name: "Raanjhan---Jhankar-Neeti-Mohan-Tushar-Joshi",
+            title: "Raanjhan",
+            artist: "Tushar-Joshi",
+        },
+        {
+            name: "Rabab-Subaig-Singh",
+            title: "Rabab",
+            artist: "Subaig-Singh",
+        },
+        ]
+        isplaying = false;
+        const pauseMusic = () => {
+            isplaying = false;
+            music.pause();
+            play.classList.replace('fa-pause', 'fa-play')
+            img.classList.remove('anime');
+        }
+        const playMusic = () => {
+            music.play();
+            isplaying = true;
+            play.classList.replace('fa-play', 'fa-pause')
+            img.classList.add('anime');
+        }
+        play.addEventListener('click', () => {
+            if (isplaying) {
+                pauseMusic();
+            }
+            else {
+                playMusic();
+            }
+        })
+        const loadSong = (songs) => {
+            title.innerHTML = songs.title;
+            artist.innerHTML = songs.artist;
+            music.src = "music/" + songs.name + ".mp3";
+            // img.src = "img/" + songs.name + ".jpg";
+
+        };
+        songIndex = 0;
+        // loadSong(songs[1]);
+        const nextSong = () => {
+            songIndex=(songIndex+1)%songs.length;
+            loadSong(songs[songIndex]);
+            playMusic();
+        }
+        const previousSong = () => {
+            songIndex=(songIndex-1+songs.length)%songs.length;
+            loadSong(songs[songIndex]);
+            playMusic();
+        }
+        next.addEventListener('click', nextSong);
+        previous.addEventListener('click', previousSong);
+
+    </script>
+</body>
+
+</html>

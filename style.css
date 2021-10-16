@@ -1,0 +1,51 @@
+
+.main_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: cyan;
+    
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 2px solid black; */
+    /* background: url('img/music_background.jpg'); */
+    width: 200px;
+    background-color: darkgray;
+    border-radius: 40px;
+    
+}
+img{
+    border-radius: 200px;
+    width: 100px;
+}
+
+.music_controls{
+    padding-top: 10px;
+    display: flex;
+    
+
+}
+
+
+.music_controls i{
+    padding: 10px;
+}
+
+.anime{
+    animation: rotatePlayer 3s linear infinite;
+
+}
+@keyframes rotatePlayer {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
